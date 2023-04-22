@@ -1,12 +1,14 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   PASSWORD_FORMAT = /\A
     (?=.*\d)           # Must contain a digit
     (?=.*[a-z])        # Must contain a lower case character
     (?=.*[[:^alnum:]]) # Must contain a symbol
   /x
+
+  has_many :attached_files, dependent: :destroy
 
   validates :email, length: { maximum: 15 }
   validates :password,

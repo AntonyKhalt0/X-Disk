@@ -1,0 +1,25 @@
+div class="row"
+  div class="col-1"
+  div class="col-10"
+    table class="table table-secondary"
+      thead
+        tr
+          th= "Login: #{current_user.email}"
+          th= "Available memory: #{current_user.available_memory / 1048576.0} Mb"
+div class="row px-2"
+  div class="col-1"
+    div class="row"
+      div class="col"
+        = form_with model: @attached_file do |f|
+          p= f.file_field :file
+          p= f.submit "Отправить"
+  div class="col-10"
+    div class="row gx-7 gy-3"
+      - current_user.attached_files.each do |attached_file|
+        div class="col-2"
+          div class="card text-center"
+            div class="card-body"
+              p class="card-title"= attached_file.name
+              div class="row"
+                div class="col-6"= link_to 'Загрузить', rails_blob_path(attached_file.file, disposition: "attachment"), class: "btn btn-success"
+                div class="col-6"= button_to "Удалить", attached_file_path(attached_file), method: :delete, class: "btn btn-danger"
