@@ -15,4 +15,16 @@ class AttachedFile < ApplicationRecord
   def check_available_memory
     user.available_memory > file.byte_size
   end
+
+  def is_zip?
+    file.content_type.split('/').last == "zip"
+  end
+
+  def is_docx?
+    file.content_type.split('/').last.split('.').last == "document"
+  end
+
+  def is_xlsx?
+    file.content_type.split('/').last.split('.').last == "sheet"
+  end
 end
