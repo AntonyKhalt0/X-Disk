@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Данное приложение используется как вариант облачного хранилища, для хранения данных типа docx, xlsx, zip.
 
-Things you may want to cover:
+Стек используемых технологий:
 
-* Ruby version
+* Ruby 3.0.4
+* Rails 7.0.4
+* Postgresql 12
+* HTML, SCSS (Bootstrap), шаблонизатор Slim
+* Docker-compose
 
-* System dependencies
+Для запуска проекта локально использовать команды:
 
-* Configuration
+* docker-compose build
+* docker-compose run web rails db:create
+* docker-compose run web rails db:migrate
+* docker-compose up
 
-* Database creation
+Схема связей в БД:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Сущность "User" соединяется с сущностью "File" связью один ко многим
+Сущность "File" соединяется с единственным прикрепленным через active_storage файлом
